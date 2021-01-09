@@ -194,5 +194,14 @@ Biber/MakeIndex runs before references and pages "stabilize", leading to a
 slow, arduous development/writing process, where feedback on new changes takes
 minutes to propagate to document previewers.
 
+Unfortunately, all this historical baggage gets carried around with TeX --- to
+understand which advice to follow, users have to know which advice is outdated,
+which requires a solid historical understanding of the hacks and updates that
+have proliferated with TeX over the years. Pretty much nobody bothers to learn
+that much about their typesetting/document preparation systems, so users often
+find themselves confused and upset with a sea of conflicting advice spanning
+four decades and tooling (programs like `xelatex` and so on) which doesn't help
+them catch or resolve issues.
+
 [sail-pdp-10]: https://forum.stanford.edu/wiki/index.php/Early_Computers_at_Stanford#DEC_PDP-10_2
 [pdp-10-processors]: http://pdp10.nocrew.org/cpu/processors.html
