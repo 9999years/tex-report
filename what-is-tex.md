@@ -57,6 +57,13 @@ have any idea where the ink will go --- only the output device knows this" (p.
 63) because, at the time, humans interacted with computers by passing back and
 forth control of a typewriter.
 
+Conceptually, it's not clear that TeX is even intended for *writing* with;
+sentences like "a wise typist will look through a document before typing
+anything, thereby getting a feeling for what sorts of problems will arise and
+what sorts of [macro] definitions will be helpful" (p. 199) explicitly separate
+*writing* a manuscript from *typing* and *typesetting* it, though almost every
+modern toolchain has irrevocably merged the two.
+
 After its initial release, TeX would be extended and augmented in several
 significant ways:
 
