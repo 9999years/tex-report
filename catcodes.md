@@ -1,9 +1,4 @@
-# Limitations (and lack thereof) of TeX's macro system
-
-TeX's macro system is startlingly flexible. Perhaps surprisingly, this makes it
-incredibly hard to use and understand.
-
-## Category Codes
+# Category Codes
 
 Category codes impose a complex system on top of TeX. This takes a bit to
 explain, but it's unfortunately necessary.
