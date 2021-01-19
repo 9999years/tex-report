@@ -78,11 +78,12 @@ to see entire JavaScript, Python, and even Perl files consisting of nothing or
 almost nothing but definitions, TeX forces its users to constantly interact
 with its sometimes-immediate and sometimes-delayed execution.
 
-Let's examine the source file `multicol.dtx`, which is required in any LaTeX
-distribution. At 4482 lines, it includes the (literate-ish) source code for the
-`multicol.sty` package, as well as the entire documentation manual, and, in
-fact, literate code for the documentation manual as well. Here's a package
-option definition from line 991, at the start of the package's actual code:
+Let's examine the source file `multicol.dtx`, one of the smallest packages
+which is required in any LaTeX distribution. At 4482 lines, it includes the
+(literate-ish) source code for the `multicol.sty` package, as well as the
+entire documentation manual, and, in fact, literate code for the documentation
+manual as well. Here's a package option definition from line 991, at the start
+of the package's actual code:
 
     \DeclareOption{colaction}{%
       \def\mc@col@status@write{%
@@ -95,15 +96,32 @@ option definition from line 991, at the start of the package's actual code:
                   {\string\mc@col@status{3}}}%
     }
 
-Note that, like `\def`'s replacement text, the second argument to
-`\DeclareOption` is executed later, conditionally, like a functional
-programming language's thunk, except the only thing the option definition does
-is manipulate *local* state (note they're not `\global\def`s) in the scope
-where the arguments are *parsed*; we don't know where that is, yet, or what
-that namespace will look like, though it happens to be in the top-most scope
-here --- and one simply has to know that `\ProcessOptions` will execute all the
-saved code from `\DeclareOption`s; there's no syntactic or language-level way
-to indicate which commands add to hooks and which commands execute hooks, even
-though LaTeX and expl3 provide various hook-like interfaces. (And one could
-observe that hooks themselves are just part of the execute/delay/scope
-confusions.)
+Note that, similar to the replacement text argument of `\def`, the second
+argument to `\DeclareOption` is executed later, conditionally, like a
+functional programming language's thunk, except the only thing the option
+definition does is manipulate *local* state (note that the code doesn't use
+`\global\def`s) in the scope where the arguments are *parsed*; we don't know
+where that is, yet, or what that namespace will look like, though it happens to
+be in the top-most scope here --- and one simply has to know that
+`\ProcessOptions` will execute all the saved code from `\DeclareOption`s;
+there's no syntactic or language-level way to indicate which commands add to
+hooks and which commands execute hooks, even though LaTeX and expl3 provide
+various hook-like interfaces. (And one could observe that hooks themselves are
+just part of the execute/delay/scope confusions.)
+
+## Types
+
+There's another problem, as well; macro definitions are TeX's only real tool
+for building abstractions, and they offer no way to verify or inspect the types
+of arguments, leading to confusing code and difficult-to-detect bugs.
+
+TeX is a programming language, so (unsurprisingly) people have written large
+and non-trivial programs with it. Ultimately, these are usually in favor of
+typesetting text or graphics, but TeX's foundations are so weak that these
+programs often end up quite generic --- on CTAN one can find implementations of
+stacks, hashmaps, numeric arrays, and other data structures, simply because TeX
+lacks an easy way to represent them.
+
+Let's consider some examples.
+
+- subscripts and unbraced arguments

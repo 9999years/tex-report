@@ -8,3 +8,6 @@
   (p. 95) --- it feels like there are parts Knuth barely bothered to design.
   "He probably knew it was bad and just wanted to finish it and do other
   things", a friend speculates while we chat.
+
+- Talk about expl3 and what it does; hungarian notation, sort of a type system,
+  etc., but ultimately hindered by TeX's underlying model.
