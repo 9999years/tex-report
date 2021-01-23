@@ -17,6 +17,8 @@ capable of doing so. Most web apps (which, for the past decade or so, has been
 paid apps or highly-funded ones can rarely answer more than the simplest
 questions.
 
+## Todoist
+
 For instance, let's consider a to-do list app. Actually, let's step back a bit:
 let's consider a physical to-do list.
 
@@ -118,3 +120,5 @@ xxx
   how many tasks are due on monday?)
 
 [todoist-filters]: https://todoist.com/help/articles/introduction-to-filters
+
+## Terminals and terminal emulators
