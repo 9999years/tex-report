@@ -301,7 +301,7 @@ Let's read on to learn a little more:
 > tokens, somewhat as if your TeX manuscript had been typed all on one
 > extremely long line.
 >
-> You should remember two chief things about TEX’s tokens:
+> You should remember two chief things about TeX's tokens:
 >
 > 1. A control sequence is considered to be a single object that is no longer
 >    composed of a sequence of symbols. Therefore long control sequence names
@@ -357,8 +357,10 @@ inhibits accessible tooling.
 But back to catcodes. Knuth then asks in Exercise 7.4:
 
 > Suppose that the commands
+>
 >     \catcode`\<=1
 >     \catcode`\>=2
+>
 > appear next to the beginning of a group that begins with `{`; these
 > specifications instruct TeX to treat `<` and `>` as group delimiters.
 > According to TeX's rules of locality, the characters `<` and `>` will revert
@@ -391,7 +393,9 @@ with that, right? Regardless, Knuth continues:
 
 > New category codes take effect as soon as a `\catcode` assignment has been
 > digested. For example,
+>
 >     {\catcode`\>=2 >
+>
 > is a complete group. But without the space after `2` it would not be
 > complete, since TeX would have read the `>` and converted it to a token
 > before knowing what category code was being specified; TeX always reads the
@@ -410,7 +414,8 @@ One thing that category codes make intensely difficult in TeX is comparison of
 values and tokens, because the question "should `@` of category 12 and `@` of
 category 11 compare equal?" lacks a simple and obvious answer.
 
-<!-- TODO -->
+<details class=TODO><summary>TODO</summary>
+</details>
 
 ### Macros
 
@@ -521,7 +526,12 @@ hooks and which commands execute hooks, even though LaTeX and expl3 provide
 various hook-like interfaces. (And one could observe that hooks themselves are
 just part of the execute/delay/scope confusions.)
 
-<!-- TODO: `\edef`, `\global`, etc. ...? -->
+
+<details class=TODO><summary>TODO</summary>
+
+`\edef`, `\global`, etc. ...?
+
+</details>
 
 #### Types
 
@@ -538,11 +548,15 @@ lacks an easy way to represent them.
 
 Let's consider some examples.
 
-- subscripts and unbraced arguments
+<details class=TODO><summary>TODO</summary>
+
+- subscripts and unbraced arguments ?
+
+</details>
 
 ## Frustrations with TeX & expl3
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 Talk about expl3 and what it does; hungarian notation, sort of a
 type system, etc., but ultimately hindered by TeX's underlying model.
@@ -551,7 +565,7 @@ type system, etc., but ultimately hindered by TeX's underlying model.
 
 ## Why is TeX so hard to replace?
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 - TeX's flaws are well known --- why hasn't anyone done anything about it?
 
@@ -566,7 +580,7 @@ type system, etc., but ultimately hindered by TeX's underlying model.
 
 ## Why do I care, and why should you?
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 - Computers are disappointing, and should be better, and to make them better we
   have to start by dreaming bigger about what they can do for us.
@@ -683,7 +697,7 @@ relational database (for example, in SQL) that Todoist can't answer.
 
 
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 - The difference between being able to *see* your data (i.e. rearrange order in
   a list, see due dates, etc.) and being able to ask *questions* of it (i.e.
@@ -695,11 +709,12 @@ relational database (for example, in SQL) that Todoist can't answer.
 
 #### Terminals and terminal emulators
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 </details>
+
 ## Towards a better system
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 - What do other TeX users think a better system looks like? (C.f. Ogawa)
 
@@ -744,7 +759,7 @@ writing, and editing code.
 [pendulum]: https://buttondown.email/hillelwayne/archive/a21f0eab-404c-472b-b35d-e7d9c58e13fc
 [sigil-cycle]: https://xkcd.com/1306/
 
-<details><summary>TODO</summary>
+<details class=TODO><summary>TODO</summary>
 
 - Things we might want in a plain-text-input language.
 

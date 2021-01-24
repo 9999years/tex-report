@@ -16,6 +16,7 @@ stdenv.mkDerivation {
     mkdir -p $out
     pandoc --from markdown \
       --to html \
+      --standalone \
       ./report.md \
       -o $out/tex-report.html
   '';
