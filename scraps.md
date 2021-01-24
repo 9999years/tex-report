@@ -28,6 +28,20 @@ justification algorithm remain best-in-class.
 One of the things I want to talk about here is "why is this such a hard
 problem?"
 
+## Textecca
+
+I've been frustrated with the typesetting system/macro programming language TeX
+for about five years now, and although my opinions on *how* TeX should change
+and *what* a future system to replace it should look like have varied over
+the years, I've never felt really satisfied with TeX.
+
+Let's look at some of the things TeX does well and poorly to get a better
+understanding of it.
+
+I believe that a lot of the ways TeX is inadequate today, in 2020, are the
+result of 1970s software design constraints and the ways that software
+development has changed since then.
+
 ## Boxes and Glue
 
 The most durable part of TeX is the venerable box-and-glue model used for
