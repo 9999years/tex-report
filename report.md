@@ -1,3 +1,7 @@
+---
+title: TeX
+---
+
 # TeX
 
 ## What is TeX?
