@@ -558,14 +558,69 @@ Let's consider some examples.
 
 </details>
 
-## Frustrations with TeX & expl3
+## LaTeX3 and a new paradigm
 
-<details class=TODO><summary>TODO</summary>
+The lack of types or type annotations in TeX eventually led to work on
+LaTeX3/`expl3`, a set of utilities and functions for programming in TeX. But
+beyond macros, LaTeX3 includes a set of naming and documentation conventions
+for more explicitly-structured LaTeX programs. In particular, the underscore
+and colon characters are given the letter catcode so that the underscore can be
+used as a pseudo-namespacing operator and commands can be given a structured
+name indicating their module, type, and more.
 
-Talk about expl3 and what it does; hungarian notation, sort of a
-type system, etc., but ultimately hindered by TeX's underlying model.
+In LaTeX3, public functions have a name like
 
-</details>
+    \<module>_<description>:<arg-spec>
+
+For example, `\tl_new:N` is in the `tl` (token list) module and takes one
+N-type (unexpanded single token) argument.
+
+Similarly, public variables have a name like
+
+    \<scope>_<module>_<description>_<type>
+
+For example, `\l_mn_author_name_tl` indicates a `tl` (token list) variable with
+`l` (local) scope in the `mn` module named `author_name`.
+
+Private functions and variables are supported as well; functions names are
+prepended with `__` (e.g. `\__expan_take:N`) and variable scopes are followed
+by a double underscore (e.g. `\l__doc_title_tl`). The authors note the
+difficulties caused by TeX's lack of namespacing:
+
+> One of the issues with the TeX language is that it doesn't support name
+> spaces and encapsulation other than by convention. As a result nearly every
+> internal command in the LaTeX2ε kernel has eventually be used by extension
+> packages as an entry point for modifications or extensions. The consequences
+> of this is that nowadays it is next to impossible to change anything in the
+> LaTeX2ε kernel (even if it is clearly just an internal command) without
+> breaking something.
+>
+> (`expl3.pdf`, p. 4)
+
+Ultimately, however, the `expl3` approach is merely surface-level, bandaging
+but not repairing TeX's poor design decisions. There's even a disclaimer:
+
+> In this document, and others referring to the `expl3` programming modules, we
+> often refer to “variables” and “functions” as if they were actual constructs
+> from a real programming language. In truth, TeX is a macro processor, and
+> functions are simply macros that may or may not take arguments and expand to
+> their replacement text. Many of the common variables are also macros, and if
+> placed into the input stream will simply expand to their definition as well
+> --- a “function” with no arguments and a “token list variable” are almost the
+> same. On the other hand, some “variables” are actually registers that must be
+> initialised and their values set and retrieved with specific functions.
+>
+> The conventions of the `expl3` code are designed to clearly separate the
+> ideas of “macros that contain data” and “macros that contain code”, and a
+> consistent wrapper is applied to all forms of “data” whether they be macros
+> or actually registers.
+>
+> (`interface3.pdf`, p. 3)
+
+Again, the problems with TeX are more fundamental than a format like LaTeX3 can
+address, and there aren't yet any tools to make sure that the naming
+conventions are followed, to check types, or other properties we'd want from a
+more robust language.
 
 ## Why is TeX so hard to replace?
 
@@ -741,14 +796,19 @@ that allow sigils to execute arbitrary TeX commands
 Sigils would be a lot less confusing if there were reliable, cross-language
 tools to inspect their meaning and link to relevant documentation, or if the
 sigils themselves had a more semantic meaning. However, most programming
-languages are still stored in plain text --- that is, what you write and what
-you see are the exact same. Plain text formats have been defended on the basis
-of exposing a "universal interface" that any program can easily interact with.
-But what if our programming languages and tools came with easy ways to dissect,
-analyze, and modify source code by exposing tokenizers, lexers, parsers,
-language-server-like analysis toolkits, and more? Then, the advantages of plain
-text would largely vanish in favor of a far more robust and featureful
-interface.
+languages are still stored in plain text --- that is, the source code you write
+and the source code you see are the exact same --- and as a consequence, syntax
+is limited by the characters on (standard) keyboards. Plain text formats have
+been defended on the basis of exposing a "universal interface" that any program
+can easily interact with, but in reality this means that every program has to
+do its own parsing and structuring of data stored as "plain text", leading
+newer designs like PowerShell and [NuShell][nushell] to focus on structured
+records and tables being shared between programs. Which leads us to ask, what
+if our programming languages and tools followed the same road and came with
+easy ways to dissect, analyze, and modify source code by exposing tokenizers,
+lexers, parsers, language-server-like analysis toolkits, and more? Then, the
+advantages of plain text would largely vanish in favor of a far more robust and
+featureful interface.
 
 Some of these problems can be solved, however, by displaying the code
 differently than what the user sees. Now, I'm not proposing moving to WYSIWYG
@@ -756,12 +816,6 @@ editors and workflows, but I'm proposing an annotated, rich interface with the
 source code at the editor level. Let me explain what I mean by that, and we can
 explore some of the possibilities for better user interfaces to reading,
 writing, and editing code.
-
-[scratch]: https://scratch.mit.edu/developers
-[blockly]: https://developers.google.com/blockly/
-[wolfram-notebooks]: https://www.wolfram.com/notebooks/
-[pendulum]: https://buttondown.email/hillelwayne/archive/a21f0eab-404c-472b-b35d-e7d9c58e13fc
-[sigil-cycle]: https://xkcd.com/1306/
 
 <details class=TODO><summary>TODO</summary>
 
@@ -783,3 +837,10 @@ writing, and editing code.
   look like, and what advantages it could have.
 
 </details>
+
+[scratch]: https://scratch.mit.edu/developers
+[blockly]: https://developers.google.com/blockly/
+[wolfram-notebooks]: https://www.wolfram.com/notebooks/
+[pendulum]: https://buttondown.email/hillelwayne/archive/a21f0eab-404c-472b-b35d-e7d9c58e13fc
+[sigil-cycle]: https://xkcd.com/1306/
+[nushell]: https://www.nushell.sh/
