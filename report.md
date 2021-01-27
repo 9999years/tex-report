@@ -2,9 +2,8 @@
 title: TeX
 ---
 
-# TeX
 
-## What is TeX?
+# What is TeX?
 
 TeX, pronounced roughly like "tech", is a suite of software and technologies
 for writing documents, originally written by Donald Knuth over the course of
@@ -89,7 +88,7 @@ significant ways:
   were unusable until XeTeX was released in 2004-2006.
 
 - The American Mathematical Society (AMS) would use Michael Spivak's AMS-TeX
-  macro package from 1983 to 1985, until they were superceded by the AMS-LaTeX
+  macro package from 1983 to 1985, until they were superseded by the AMS-LaTeX
   macro packages built on LaTeX.
 
 - In 1984, Leslie Lamport (Ph.D., Brandeis) released LaTeX, a "document
@@ -128,7 +127,7 @@ significant ways:
 
   Nowadays, Biber (c. 2011), a "backend bibliography processor for biblatex" is
   used instead of BibTeX. Of course, Biber takes a different input format and
-  produces a different output format, so there's all kinds of incompatability
+  produces a different output format, so there's all kinds of incompatibility
   issues where Biber, BibTeX, and biblatex interact.
 
   LaTeX, along with other distributions/programs based on it, have been the
@@ -195,7 +194,7 @@ Though some of these extensions vary only by adding additional commands to use
 in TeX documents, many of them replace the base macro set, or enormously extend
 it, more akin to Racket's `#lang` concept than simple packages. As a result,
 it's difficult to ensure that certain commands are defined, and because TeX has
-no notion of versioning or backwards/forwards compatability, there's no way to
+no notion of versioning or backwards/forwards compatibility, there's no way to
 declare specific versions, formats, and programs to use when
 compiling/processing a LaTeX document, though some editors/tools have added
 in... you guessed it, a hack that parses magic comments to determine which
@@ -219,9 +218,9 @@ them catch or resolve issues.
 [sail-pdp-10]: https://forum.stanford.edu/wiki/index.php/Early_Computers_at_Stanford#DEC_PDP-10_2
 [pdp-10-processors]: http://pdp10.nocrew.org/cpu/processors.html
 
-## Macros in TeX
+# Macros in TeX
 
-### Category Codes
+## Category Codes
 
 Category codes impose a complex system on top of TeX. This takes a bit to
 explain, but it's unfortunately necessary.
@@ -412,7 +411,7 @@ care about whitespace, and it doesn't matter until the assignment has been
 "digested", a term which doesn't appear in the index despite seeming central to
 TeX's model of parsing and macro expansion.
 
-#### Consequences of Category Codes
+### Consequences of Category Codes
 
 One thing that category codes make intensely difficult in TeX is comparison of
 values and tokens, because the question "should `@` of category 12 and `@` of
@@ -421,7 +420,7 @@ category 11 compare equal?" lacks a simple and obvious answer.
 <details class=TODO><summary>TODO</summary>
 </details>
 
-### Macros
+## Macros
 
 Next, let's examine TeX's macro system. Macros are named with a control
 sequence, and may have up to 9 parameters, and are defined with the `\def`
@@ -537,7 +536,7 @@ just part of the execute/delay/scope confusions.)
 
 </details>
 
-#### Types
+### Types
 
 There's another problem, as well; macro definitions are TeX's only real tool
 for building abstractions, and they offer no way to verify or inspect the types
@@ -558,7 +557,7 @@ Let's consider some examples.
 
 </details>
 
-## LaTeX3 and a new paradigm
+# LaTeX3 and a new paradigm
 
 The lack of types or type annotations in TeX eventually led to work on
 LaTeX3/`expl3`, a set of utilities and functions for programming in TeX. But
@@ -622,7 +621,7 @@ address, and there aren't yet any tools to make sure that the naming
 conventions are followed, to check types, or other properties we'd want from a
 more robust language.
 
-## Why is TeX so hard to replace?
+# Why is TeX so hard to replace?
 
 <details class=TODO><summary>TODO</summary>
 
@@ -637,21 +636,7 @@ more robust language.
 
 </details>
 
-## Why do I care, and why should you?
-
-<details class=TODO><summary>TODO</summary>
-
-- Computers are disappointing, and should be better, and to make them better we
-  have to start by dreaming bigger about what they can do for us.
-
-- Writing TeX is really hard with limited working memory and shitty devtools.
-
-- I need notes and documents to be *good* --- not only easy to write and
-  well-formatted, but easy to share, interact with, and read.
-
-- I need my tools to help me, and TeX just gets in my way too much.
-
-</details>
+# Why do I care, and why should you?
 
 **Computers disappoint me deeply.** I find them difficult to use and frequently
 unable of answering the questions I want to ask, even when they're obviously
@@ -660,7 +645,24 @@ capable of doing so. Most web apps (which, for the past decade or so, has been
 paid apps or highly-funded ones can rarely answer more than the simplest
 questions.
 
-### Todoist
+## Designing for access
+
+When I talk about my frustrations with computers in general or with
+TeX in particular, I'm often met with a fair amount of confusion.
+
+I have ADHD, a disability that effects [2-5% of adults][adhd-prevalence] --- so,
+for example, in a class of 20 students we could expect that about one student
+has ADHD. As a result, I struggle with context switching ("changing gears" from
+one activity to another) and working memory (that is, keeping information in my
+head).
+
+I'm also a mathematics major. I want to take notes in my mathematics courses.
+
+[adhd-prevalence]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4195639/
+[flow]: https://en.wikipedia.org/wiki/Flow_(psychology)
+[hyperfocus]: https://en.wikipedia.org/wiki/Hyperfocus
+
+## Todoist
 
 For instance, let's consider a to-do list app. Actually, let's step back a bit:
 let's consider a physical to-do list.
@@ -754,26 +756,136 @@ relational database (for example, in SQL) that Todoist can't answer.
   But in SQL, "how many overdue tasks are there" is `SELECT COUNT(*) FROM
   tasks WHERE completed > due`.
 
-
-
 <details class=TODO><summary>TODO</summary>
 
 - The difference between being able to *see* your data (i.e. rearrange order in
   a list, see due dates, etc.) and being able to ask *questions* of it (i.e.
   how many tasks are due on monday?)
 
+- Computers are disappointing, and should be better, and to make them better we
+  have to start by dreaming bigger about what they can do for us.
+
+- Writing TeX is really hard with limited working memory and shitty devtools.
+
+- I need notes and documents to be *good* --- not only easy to write and
+  well-formatted, but easy to share, interact with, and read.
+
+- I need my tools to help me, and TeX just gets in my way too much.
+
 </details>
 
 [todoist-filters]: https://todoist.com/help/articles/introduction-to-filters
 
-#### Terminals and terminal emulators
+### Terminals and terminal emulators
 
 <details class=TODO><summary>TODO</summary>
 </details>
 
-## Towards a better system
+# Towards a better system
+
+Others before me have reached the conclusion that TeX can only be improved by
+restructuring it architecturally as well. In a 2005 article in The PracTeX
+Journal, Arthur Ogawa argued that TeX "failed to attract larger usership [...]
+because TeX fails to provide ease of use in certain crucial areas, all of them
+interfaces."
+
+The pain points Ogawa identifies are with document creation and maintenance,
+determining the formatting of the document, prompt preview of formatted
+documents, installing/updating TeX's executables and runtime files, and
+a lack of compatibility with Unicode and fonts in OpenType or TrueType formats.
+
+Ogawa proposes the creation of macro packages implementing:
+
+- An **input parser** for "purely descriptive marked up documents (such as XML or
+  the descriptive subset of LaTeX) for the benefit of a plug-in formatter" (p.
+  6), which transforms documents from some markup language into some data structure.
+
+- A **typespec parser** which converts the input parser's output into a
+  "descriptive representation of the typographic specification of an editorial
+  element (font, size, leading, measure, justification, etc.)" (p. 6), which
+  could then be rendered by TeX (or, if the specification is simple and clear
+  enough, by other plug-in backends).
+
+Ogawa also proposes:
+
+- Creating a "standard for package installation", unifying all the disparate
+  "TeX distributions" into one cross-platform system.
+
+- Prompt page output. Ogawa remarks "whether [outputting each page as it is
+  shipped out of TeX's memory] is even compatible with the production of a PDF
+  output stream, I do not know. But the alternative, that TeX will never again
+  provide prompt interaction with the user, is simply not acceptable" (p. 7),
+  and I think this kind of dreaming is really important --- if we let our
+  designs for computers be limited by current technologies (here, PDF), we miss
+  obvious ways that computers can improve.
+
+- Character-level source synchronization, that is, creating a mapping between
+  rendered output of a TeX document and the source code that's granular down to
+  the character-level.
+
+  Ogawa also notes that "synchronization is the basis for any future
+  direct-manipulation interface to the TeX document" --- that is, by
+  implementing character-level source synchronization, we get a component which
+  can be used to build graphical editors and other tools for little additional
+  effort.
+
+---
+
+Before discussing the constraints imposed by TeX itself, Ogawa talks about how
+it's difficult to create, edit, and format documents written in TeX:
+
+> TeX installations, by contrast [with WYSIWYG editors], require the user to
+> maintain the source with all its markup exposed. This limits its adoption to
+> people who are comfortable with this intermixture of code and content, who
+> are able to work at a more abstract level, and who are willing to take the
+> trouble to type in codes accurately.
+>
+> ...
+>
+> Word processors and page layout applications provide a control-panel based
+> interface for determining the formatting of a paragraph or other block of
+> text. This approach is much more convenient than anything provided for TeX,
+> with the exception of Scientific Word, which has a Style Editor interface.
+>
+> ("Opinion and Analysis: TeX's Interface Challenges", p. 3-4)
+
+In the next issue of The PracTeX Journal, David Walden argued for "a more
+primitive take on why new users of TeX, LaTeX, and the rest find TeX hard to
+learn":
+
+> Most people never want to learn more than the minimum about anything they
+> have to use or do. We learn to use a couple of buttons on our microwaves but
+> no more. We go to one supermarket and not others because we know where stuff
+> is in the first supermarket (and we are annoyed when the supermarket
+> rearranges the aisles). We don't know how to use most of the dials and
+> controls on the dashboards of our cars. Etc.
+>
+> ...
+>
+> To reiterate, people generally don't want to learn anything new. Of course,
+> with TeX you can't know so little.
+>
+> ("Travels in TeX Land: A Macro, Three Software Packages, and the Trouble with
+> TeX", p. 8-9)
+
+I think these two passages grapple with the same underlying issue, however:
+plain text (as a user interface) has no *discoverability.* That is, there's no
+way to discover new or different capabilities of the interface within the
+interface itself, and this has always been a huge boon of GUIs, with keyboard
+shortcuts largely replaced with menus, control panels, icons, and so on --- you
+can just *open* a program like Microsoft Word or Adobe Illustrator and
+regardless of how confusing the tools are to use, the user interface makes
+clear exactly which ones are available, and it's easy to click around to
+discover what different tools do.
+
+On the other hand, a plain text source file
+is useless on its own. Without autocomplete, even guessing which names are
+defined is impossible.
 
 <details class=TODO><summary>TODO</summary>
+
+- control panels, markup, etc. are all part of *source code* --- contrast with
+  scratch!!!
 
 - What do other TeX users think a better system looks like? (C.f. Ogawa)
 
@@ -781,7 +893,7 @@ relational database (for example, in SQL) that Todoist can't answer.
 
 </details>
 
-## Beyond plain-text source code
+# Beyond plain-text source code
 
 When I started thinking about this project, I thought a lot about what the
 syntax should look like. Programming languages often struggle with syntax, and
@@ -818,6 +930,9 @@ explore some of the possibilities for better user interfaces to reading,
 writing, and editing code.
 
 <details class=TODO><summary>TODO</summary>
+
+- For mockups, maybe do a step-by-step transformation from TeX source code to a
+  GUI editor?
 
 - Things we might want in a plain-text-input language.
 
