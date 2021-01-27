@@ -1,7 +1,6 @@
 ---
-title: TeX
+title: "TeX: Problems and Solutions"
 ---
-
 
 # What is TeX?
 
@@ -411,15 +410,6 @@ care about whitespace, and it doesn't matter until the assignment has been
 "digested", a term which doesn't appear in the index despite seeming central to
 TeX's model of parsing and macro expansion.
 
-### Consequences of Category Codes
-
-One thing that category codes make intensely difficult in TeX is comparison of
-values and tokens, because the question "should `@` of category 12 and `@` of
-category 11 compare equal?" lacks a simple and obvious answer.
-
-<details class=TODO><summary>TODO</summary>
-</details>
-
 ## Macros
 
 Next, let's examine TeX's macro system. Macros are named with a control
@@ -529,43 +519,18 @@ hooks and which commands execute hooks, even though LaTeX and expl3 provide
 various hook-like interfaces. (And one could observe that hooks themselves are
 just part of the execute/delay/scope confusions.)
 
-
-<details class=TODO><summary>TODO</summary>
-
-`\edef`, `\global`, etc. ...?
-
-</details>
-
-### Types
-
-There's another problem, as well; macro definitions are TeX's only real tool
-for building abstractions, and they offer no way to verify or inspect the types
-of arguments, leading to confusing code and difficult-to-detect bugs.
-
-TeX is a programming language, so (unsurprisingly) people have written large
-and non-trivial programs with it. Ultimately, these are usually in favor of
-typesetting text or graphics, but TeX's foundations are so weak that these
-programs often end up quite generic --- on CTAN one can find implementations of
-stacks, hashmaps, numeric arrays, and other data structures, simply because TeX
-lacks an easy way to represent them.
-
-Let's consider some examples.
-
-<details class=TODO><summary>TODO</summary>
-
-- subscripts and unbraced arguments ?
-
-</details>
-
 # LaTeX3 and a new paradigm
 
-The lack of types or type annotations in TeX eventually led to work on
-LaTeX3/`expl3`, a set of utilities and functions for programming in TeX. But
-beyond macros, LaTeX3 includes a set of naming and documentation conventions
-for more explicitly-structured LaTeX programs. In particular, the underscore
-and colon characters are given the letter catcode so that the underscore can be
-used as a pseudo-namespacing operator and commands can be given a structured
-name indicating their module, type, and more.
+Though macro definitions are TeX's only real tool for building abstractions,
+they offer no way to verify, inspect, or check the types of arguments, leading
+to confusing code and difficult-to-detect bugs. The lack of types or type
+annotations in TeX eventually led to work on LaTeX3/`expl3`, a set of utilities
+and functions for programming in TeX. But beyond macros, LaTeX3 includes a set
+of naming and documentation conventions for more explicitly-structured LaTeX
+programs. In particular, the underscore and colon characters are given the
+letter catcode so that the underscore can be used as a pseudo-namespacing
+operator and commands can be given a structured name indicating their module,
+type, and more.
 
 In LaTeX3, public functions have a name like
 
@@ -621,22 +586,7 @@ address, and there aren't yet any tools to make sure that the naming
 conventions are followed, to check types, or other properties we'd want from a
 more robust language.
 
-# Why is TeX so hard to replace?
-
-<details class=TODO><summary>TODO</summary>
-
-- TeX's flaws are well known --- why hasn't anyone done anything about it?
-
-- TeX's design is poor and feels unfinished; in chapter 14, titled "How TeX
-  Breaks Paragraphs into Lines", Knuth notes that one possible item in a
-  horizontal list is "a 'whatsit' (something special to be explained later)"
-  (p. 95) --- it feels like there are parts Knuth barely bothered to design.
-  "He probably knew it was bad and just wanted to finish it and do other
-  things", a friend speculates while we chat.
-
-</details>
-
-# Why do I care, and why should you?
+# Why care?
 
 **Computers disappoint me deeply.** I find them difficult to use and frequently
 unable of answering the questions I want to ask, even when they're obviously
@@ -647,16 +597,18 @@ questions.
 
 ## Designing for access
 
-When I talk about my frustrations with computers in general or with
-TeX in particular, I'm often met with a fair amount of confusion.
+Many of my desires for a typesetting system, or for computers in general, stem
+from my ADHD and the inaccessibility of most programs.
 
-I have ADHD, a disability that effects [2-5% of adults][adhd-prevalence] --- so,
+I have ADHD, along with [2-5% of adults][adhd-prevalence] (so,
 for example, in a class of 20 students we could expect that about one student
-has ADHD. As a result, I struggle with context switching ("changing gears" from
-one activity to another) and working memory (that is, keeping information in my
-head).
+has ADHD). As a result, I struggle with context switching ("changing gears"
+from one activity to another) and working memory (that is, keeping information
+in my head).
 
 I'm also a mathematics major. I want to take notes in my mathematics courses.
+
+TeX produces PDF output. Therefore, there's no interactivity.
 
 [adhd-prevalence]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4195639/
 [flow]: https://en.wikipedia.org/wiki/Flow_(psychology)
@@ -779,6 +731,16 @@ relational database (for example, in SQL) that Todoist can't answer.
 ### Terminals and terminal emulators
 
 <details class=TODO><summary>TODO</summary>
+
+- TeX's flaws are well known --- why hasn't anyone done anything about it?
+
+- TeX's design is poor and feels unfinished; in chapter 14, titled "How TeX
+  Breaks Paragraphs into Lines", Knuth notes that one possible item in a
+  horizontal list is "a 'whatsit' (something special to be explained later)"
+  (p. 95) --- it feels like there are parts Knuth barely bothered to design.
+  "He probably knew it was bad and just wanted to finish it and do other
+  things", a friend speculates while we chat.
+
 </details>
 
 # Towards a better system
@@ -829,10 +791,8 @@ Ogawa also proposes:
   can be used to build graphical editors and other tools for little additional
   effort.
 
----
-
-Before discussing the constraints imposed by TeX itself, Ogawa talks about how
-it's difficult to create, edit, and format documents written in TeX:
+When explaining why it's difficult to create, edit, and format documents
+written in TeX, Ogawa says that:
 
 > TeX installations, by contrast [with WYSIWYG editors], require the user to
 > maintain the source with all its markup exposed. This limits its adoption to
@@ -878,21 +838,6 @@ regardless of how confusing the tools are to use, the user interface makes
 clear exactly which ones are available, and it's easy to click around to
 discover what different tools do.
 
-On the other hand, a plain text source file
-is useless on its own. Without autocomplete, even guessing which names are
-defined is impossible.
-
-<details class=TODO><summary>TODO</summary>
-
-- control panels, markup, etc. are all part of *source code* --- contrast with
-  scratch!!!
-
-- What do other TeX users think a better system looks like? (C.f. Ogawa)
-
-- What capabilities does TeX lack that we want?
-
-</details>
-
 # Beyond plain-text source code
 
 When I started thinking about this project, I thought a lot about what the
@@ -922,14 +867,27 @@ lexers, parsers, language-server-like analysis toolkits, and more? Then, the
 advantages of plain text would largely vanish in favor of a far more robust and
 featureful interface.
 
-Some of these problems can be solved, however, by displaying the code
-differently than what the user sees. Now, I'm not proposing moving to WYSIWYG
-editors and workflows, but I'm proposing an annotated, rich interface with the
-source code at the editor level. Let me explain what I mean by that, and we can
-explore some of the possibilities for better user interfaces to reading,
-writing, and editing code.
+We can even keep the code's structure the same and only display it differently
+in an editor; Google's [Blockly][blockly] system (which itself inspired
+[Scratch's block-based programming language][scratch]) displays a program's
+parse tree as a set of blocks that fit together with slots and holes of
+different shapes. This has two important effects. First, it not only
+*categorically eliminates* syntax errors, but it makes the errors (if not the
+underlying design) more obvious by requiring only the childhood skill of
+fitting blocks into matching holes rather than understanding, memorizing, and
+applying a particular grammar.
+
+Once we move beyond plain-text editors, we unlock a whole score of
+possibilities for displaying, editing, and interacting with code.
 
 <details class=TODO><summary>TODO</summary>
+
+- Some of these problems can be solved, however, by displaying the code
+  differently than what the user sees. Now, I'm not proposing moving to WYSIWYG
+  editors and workflows, but I'm proposing an annotated, rich interface with
+  the source code at the editor level. Let me explain what I mean by that, and
+  we can explore some of the possibilities for better user interfaces to
+  reading, writing, and editing code.
 
 - For mockups, maybe do a step-by-step transformation from TeX source code to a
   GUI editor?
@@ -951,6 +909,12 @@ writing, and editing code.
 - What a *non*-plain-text-input programming language would (or rather, *does*)
   look like, and what advantages it could have.
 
+On the other hand, a plain text source file is useless on its own. Without
+autocomplete, even guessing which names are defined is impossible. And isn't
+that sort of strange? Because, of course, there's generally a program to
+determine which names are spelled right, if the file is grammatically correct,
+and so on --- the compiler!
+
 </details>
 
 [scratch]: https://scratch.mit.edu/developers
@@ -959,3 +923,25 @@ writing, and editing code.
 [pendulum]: https://buttondown.email/hillelwayne/archive/a21f0eab-404c-472b-b35d-e7d9c58e13fc
 [sigil-cycle]: https://xkcd.com/1306/
 [nushell]: https://www.nushell.sh/
+
+# Designing a better system
+
+I want something better than TeX for writing, editing, and creating documents.
+The research above has guided me towards the following set of ideas and
+principles.
+
+- The documents produced should be native digital documents, not copies of
+  print documents. They should be responsive (i.e., resizable to varying screen
+  and window sizes) and highly linked together.
+
+- Ideally, the system should be able to export documents in multiple formats.
+  (Plain text, HTML, PDF, ...)
+
+- The system should have a notion of links, concepts, and definitions. It
+  should be easy, in an editor or in a displayed document, to jump from a
+  mention of a concept to its definition.
+
+  - Ideally, jumping entirely won't be necessary --- to avoid unnecessary
+    context switching, a quick definition-on-hover feature should be available.
+
+- The system should have an 
